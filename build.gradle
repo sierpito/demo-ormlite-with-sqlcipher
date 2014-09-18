@@ -1,0 +1,41 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.10.+'
+    }
+}
+
+apply plugin: 'android'
+apply plugin: 'idea'
+
+android {
+    compileSdkVersion 'android-18'
+    buildToolsVersion '20.0.0'
+
+    sourceSets {
+        main {
+            java.srcDirs = ['src/main/java']
+            res.srcDirs = ['res']
+            manifest.srcFile 'AndroidManifest.xml'
+            jniLibs.srcDir file('jniLibs')
+            assets.srcDirs = ['assets']
+        }
+    }
+}
+
+dependencies {
+    compile files('libs/ormlite-core-4.46.jar')
+    compile files('libs/ormlite-android-sqlcipher-4.46.jar')
+    compile files('libs/sqlcipher-3.1.0.jar')
+    compile files('libs/guava-r09.jar')
+    compile files('libs/commons-codec.jar')
+}
+
+android {
+    lintOptions {
+        abortOnError false
+    }
+}
+
